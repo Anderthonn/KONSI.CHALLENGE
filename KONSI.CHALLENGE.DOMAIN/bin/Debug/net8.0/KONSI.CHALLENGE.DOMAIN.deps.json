@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "KONSI.CHALLENGE.DOMAIN/1.0.0": {
+        "runtime": {
+          "KONSI.CHALLENGE.DOMAIN.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "KONSI.CHALLENGE.DOMAIN/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

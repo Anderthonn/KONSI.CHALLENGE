@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "WJktzu9iWQypxuxbipAGgh4rA4AXYa+huMyknDt1T5i6kflotDxIHY8NgRC7BCYkZuw388Ckpux4JLcROalaSA==",
+  "success": true,
+  "projectFilePath": "A:\\Projetos - (A.L.B)\\KONSI.CHALLENGE\\KONSI.CHALLENGE.CACHE\\KONSI.CHALLENGE.CACHE.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Anderthonn Batista\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Anderthonn Batista\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Anderthonn Batista\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\Anderthonn Batista\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
+    "C:\\Users\\Anderthonn Batista\\.nuget\\packages\\stackexchange.redis\\2.7.27\\stackexchange.redis.2.7.27.nupkg.sha512",
+    "C:\\Users\\Anderthonn Batista\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

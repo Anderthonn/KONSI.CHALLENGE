@@ -1,0 +1,181 @@
+﻿@using KONSI.CHALLENGE.DOMAIN
+@model ConsultationBenefits
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Benefícios - Konsi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcfaf9;
+            color: #101008;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(16, 16, 8, 0.1);
+            background-color: #fcfaf9;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #089e82;
+            margin-bottom: 10px;
+        }
+
+        .user-data, .benefits {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #089e82;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 80px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #089e82;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #089e82;
+            color: #fcfaf9;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #007e66;
+        }
+
+        .benefits {
+            margin-top: 20px;
+        }
+
+            .benefits h2 {
+                font-size: 24px;
+                color: #089e82;
+                margin-bottom: 10px;
+            }
+
+        .benefits-info {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 15px;
+        }
+
+        .benefit-item {
+            margin-bottom: 10px;
+        }
+
+            .benefit-item strong {
+                display: block;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .benefit-item span {
+                color: #666;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Consulta de Benefícios</h1>
+        </header>
+        <section class="user-data">
+            <h2>Dados do usuário</h2>
+            <label for="cpfInput">CPF:</label>
+            <input type="text" id="cpfInput" placeholder="Digite seu CPF">
+            <button id="consultButton">Consultar</button>
+        </section>
+        <section class="benefits" id="benefitsSection" style="display: none;">
+            <h2>Benefícios</h2>
+            <ul id="benefitsList" class="benefits-list"></ul>
+        </section>
+        <div id="loadingIndicator" style="display: none;">
+            <svg width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                <circle cx="50" cy="50" fill="none" stroke="#089e82" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                    <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+                </circle>
+            </svg>
+        </div>
+    </div>
+    <!-- Adicione este script na sua view Razor (.cshtml) -->
+    <script>
+        document.getElementById('consultButton').addEventListener('click', async function () {
+            var cpf = document.getElementById('cpfInput').value;
+            var loadingIndicator = document.getElementById('loadingIndicator');
+            loadingIndicator.style.display = 'block'; // Mostra o indicador de carregamento
+
+            try {
+                var response = await fetch('/Main/ConsultationBenefits?cpf=' + cpf);
+
+                if (!response.ok) {
+                    throw new Error('Erro ao consultar o CPF');
+                }
+                var data = await response.json(); // Obtém os dados da resposta como JSON
+                console.log(data);
+
+                // Limpa os resultados anteriores
+                var benefitsList = document.getElementById('benefitsList');
+                benefitsList.innerHTML = '';
+
+                // Atualiza os detalhes dos benefícios na página
+                data.forEach(function (benefit) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = 'Número do benefício: ' + benefit.benefitNumber + ', Código do tipo de benefício: ' + benefit.benefitTypeCode;
+                    benefitsList.appendChild(listItem);
+                });
+
+                document.getElementById('benefitsSection').style.display = 'block'; // Exibe a seção de benefícios
+            } catch (error) {
+                console.error('Erro:', error);
+            } finally {
+                loadingIndicator.style.display = 'none'; // Oculta o indicador de carregamento, independentemente de sucesso ou falha
+            }
+        });
+    </script>
+</body>
+</html>

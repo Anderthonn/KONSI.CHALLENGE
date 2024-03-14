@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\KONSI.CHALLENGE.WEBUI.props" />
+</Project>
